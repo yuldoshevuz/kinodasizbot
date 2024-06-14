@@ -33,15 +33,20 @@ startScene.hears( /^\d+$/, async (ctx) => {
             );
             return
         }
+
+        movie.count++
     
         await ctx.replyWithDocument(movie.link, {
-            caption: `<b>Kino nomi:</b> ${movie.title}\n\n`+
-                    `<b>Kino kodi:</b> ${movie.code}\n\n`+
-                    `<b>Tavsif:</b> ${movie.description}\n\n`+
-                    `<b>🤖 Bizning bot: @${bot.botInfo?.username}</b>`,
+            caption: `<b>🎬 ${movie.title}</b> | Kod #${movie.code}\n`+
+                    `-  -  -  -  -  -  -  -  -\n`+
+                    `${movie.description}\n`+
+                    `<b>📥 • Yuklandi :</b> ${movie.count}\n\n`+
+                    `🔘 @${bot.botInfo?.username}`,
             parse_mode: "HTML",
             ...movieKeyboard(code)
         });
+
+        movie.save()
     } catch (error) {
         await ctx.replyWithHTML("<b>❌ Kinoni yuborishda xatolik</b>")
         errorHandler(error)
