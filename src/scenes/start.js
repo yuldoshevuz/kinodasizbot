@@ -41,7 +41,7 @@ startScene.hears( /^\d+$/, async (ctx) => {
                     `-  -  -  -  -  -  -  -  -\n`+
                     `${movie.description}\n`+
                     `<b>📥 • Yuklandi :</b> ${movie.count}\n\n`+
-                    `🔘 @${bot.botInfo?.username}`,
+                    `<b>🔘 @${bot.botInfo?.username}</b>`,
             parse_mode: "HTML",
             ...movieKeyboard(code)
         });
