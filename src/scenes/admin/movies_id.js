@@ -1,6 +1,7 @@
 import { Scenes } from "telegraf";
 import { MovieModel } from "../../models/movie.model.js";
 import { movieAdminKeyboard } from "../../utils/keyboards.js";
+import { errorHandler } from "../../helpers/error.handler.js";
 export const movieIdScene = new Scenes.BaseScene("movies:id")
 
 movieIdScene.enter(async (ctx) => {
@@ -19,7 +20,7 @@ movieIdScene.enter(async (ctx) => {
             }
         }
     } catch (error) {
-        
+        errorHandler(error, ctx)
     }
 })
 
@@ -40,6 +41,6 @@ movieIdScene.action(async (callbackData, ctx) => {
 
 
     } catch (error) {
-        
+        errorHandler(error, ctx)
     }
 })
